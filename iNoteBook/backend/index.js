@@ -1,6 +1,7 @@
 import connectToMongo from './models/database.js';
 import express from 'express';
-import { authRouter } from './routes/auth.js';
+import { signInRouter } from './routes/auth.js';
+import { signUpRouter } from './routes/signup.js';
 
 connectToMongo();
 
@@ -11,7 +12,8 @@ const port = 5000;
 app.use(express.json());
 
 // Routes
-app.use('/auth', authRouter);
+app.use('/signup', signUpRouter);
+app.use('/signin', signInRouter);
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
