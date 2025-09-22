@@ -3,11 +3,12 @@ import User from '../models/User.js';
 import { body, validationResult } from 'express-validator';
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { jwtSecret } from '../helper.js';
 
 
 export const signInRouter = Router();
 
-const jwtSecret = "@mysecrettoken";
+
 
 signInRouter.post(
     '/',

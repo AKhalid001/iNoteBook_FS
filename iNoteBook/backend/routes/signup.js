@@ -34,7 +34,7 @@ signUpRouter.post(
                 password: hashPassword,
                 date: req.body.date
             });
-            const jwtToken  = jwt.sign({ id: User.id }, jwtSecret);
+            const jwtToken  = jwt.sign({ id: user.id }, jwtSecret);
             res.json({ jwtToken });
         }
         catch (err) {
