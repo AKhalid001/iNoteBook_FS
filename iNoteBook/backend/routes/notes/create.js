@@ -1,12 +1,11 @@
 import { Router } from 'express';
-import Notes from '../models/Notes.js';
+import Notes from '../../models/Notes.js';
 import { body, validationResult } from 'express-validator';
-import { fetchuser } from '../middleware/fetchuser.js';
+import { fetchuser } from '../../middleware/fetchuser.js';
 
+export const create = Router();
 
-export const addNotes = Router();
-
-addNotes.post('/',
+create.post('/',
     fetchuser,
     [
         // body('user').exists(),

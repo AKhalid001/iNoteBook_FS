@@ -1,10 +1,13 @@
-import connectToMongo from './models/database.js';
+import connectToMongo from './database.js';
 import express from 'express';
-import { signInRouter } from './routes/signin.js';
-import { signUpRouter } from './routes/signup.js';
-import { userData } from './routes/user.js';
-import { fetchNotes } from './routes/viewnotes.js';
-import { addNotes } from './routes/addnotes.js';
+import { signUpRouter } from './routes/users/signup.js';
+import { signInRouter } from './routes/users/signin.js';
+import { userData } from './routes/users/user.js';
+import { create } from './routes/notes/create.js';
+import { read } from './routes/notes/read.js';
+import { update } from './routes/notes/update.js';
+import { deleteNote } from './routes/notes/delete.js';
+
 
 connectToMongo();
 
@@ -18,8 +21,10 @@ app.use(express.json());
 app.use('/signup', signUpRouter);
 app.use('/signin', signInRouter);
 app.use('/userdata', userData);
-app.use('/fetchnotes', fetchNotes);
-app.use('/addnotes', addNotes);
+app.use('/notes/create', create);
+app.use('/notes/read', read);
+app.use('/notes/update', update);
+app.use('/notes/delete', deleteNote);
 
 
 app.listen(port, () => {

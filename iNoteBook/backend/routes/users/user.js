@@ -1,7 +1,6 @@
 import { Router } from 'express';
-import User from '../models/User.js';
-import { fetchuser } from '../middleware/fetchuser.js';
-
+import User from '../../models/User.js';
+import { fetchuser } from '../../middleware/fetchuser.js';
 
 export const userData = Router();
 

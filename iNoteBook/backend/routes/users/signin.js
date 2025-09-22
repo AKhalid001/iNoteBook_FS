@@ -1,17 +1,13 @@
 import { Router } from 'express';
-import User from '../models/User.js';
+import User from '../../models/User.js';
 import { body, validationResult } from 'express-validator';
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { jwtSecret } from '../helper.js';
-
+import { jwtSecret } from '../../helper.js';
 
 export const signInRouter = Router();
 
-
-
-signInRouter.post(
-    '/',
+signInRouter.post('/',
     [
         body('email', 'Enter a valid email').isEmail(),
         body('password', 'please enter the password ').exists(),

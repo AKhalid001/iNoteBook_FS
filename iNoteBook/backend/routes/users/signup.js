@@ -1,16 +1,14 @@
 import { Router } from 'express';
-import User from '../models/User.js';
+import User from '../../models/User.js';
 import { body, validationResult } from 'express-validator';
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-
 
 export const signUpRouter = Router();
 
 const jwtSecret = "@mysecrettoken";
 
-signUpRouter.post(
-    '/',
+signUpRouter.post('/',
     [
         body('name', 'Enter a valid name').isLength({ min: 3 }),
         body('email', 'Enter a valid email').isEmail(),

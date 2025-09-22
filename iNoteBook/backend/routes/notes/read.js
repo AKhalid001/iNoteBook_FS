@@ -1,11 +1,10 @@
 import { Router } from 'express';
-import Notes from '../models/Notes.js';
-import { fetchuser } from '../middleware/fetchuser.js';
+import Notes from '../../models/Notes.js';
+import { fetchuser } from '../../middleware/fetchuser.js';
 
+export const read = Router();
 
-export const fetchNotes = Router();
-
-fetchNotes.get('/', fetchuser, async (req, res) => {
+read.get('/', fetchuser, async (req, res) => {
     try {
         const notes = await Notes.find({ user: req.user.id});
         res.json(notes);
