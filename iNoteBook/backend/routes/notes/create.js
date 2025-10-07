@@ -27,7 +27,7 @@ create.post('/',
             res.json(savedNote);
         }
         catch (err) {
-            console.log(err);
+            
             res.json({ message: err.message });
         };
     });

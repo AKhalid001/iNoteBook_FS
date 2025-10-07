@@ -23,7 +23,7 @@ update.put('/:id',
             res.json({note});
         }
         catch (err) {
-            console.log(err);
+            
             res.json({ message: err.message });
         };
     });

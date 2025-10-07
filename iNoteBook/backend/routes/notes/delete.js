@@ -17,7 +17,7 @@ deleteNote.delete('/:id',
             res.json({"Success":"Note has been deleted", note: note});
         }
         catch (err) {
-            console.log(err);
+            
             res.json({ message: err.message });
         };
     });

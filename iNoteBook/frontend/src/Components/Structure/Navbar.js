@@ -3,8 +3,8 @@ import { Link } from "react-router-dom"
 import { useLocation } from "react-router-dom"
 
 export const Navbar = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
   const location = useLocation();
+  const [loggedIn, setLoggedIn] = useState(false);
   const navigate = {
     "iNoteBook": "/",
     "Home": "/",
@@ -19,7 +19,7 @@ export const Navbar = () => {
 
 
   return (
-    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+    <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
       <div className="container-fluid">
         <Link className="navbar-brand" to={navigate.iNoteBook}>{Object.keys(navigate)[0]}</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">

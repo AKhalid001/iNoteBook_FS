@@ -32,7 +32,7 @@ signInRouter.post('/',
             }
         }
         catch (err) {
-            console.log(err);
+            
             res.json({ message: err.message });
         };
     }

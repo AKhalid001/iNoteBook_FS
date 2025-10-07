@@ -11,7 +11,6 @@ userData.post('/', fetchuser, async (req, res) => {
         res.json({userData});
     }
     catch (err) {
-        console.log(err);
         res.json({ message: err.message });
     };
 });

@@ -1,5 +1,6 @@
 import connectToMongo from './database.js';
 import express from 'express';
+import cors from 'cors';
 import { signUpRouter } from './routes/users/signup.js';
 import { signInRouter } from './routes/users/signin.js';
 import { userData } from './routes/users/user.js';
@@ -15,6 +16,7 @@ const app = express();
 const port= process.env.PORT || 5000;  // <-- backend on 5000
 
 // Middleware
+app.use(cors());
 app.use(express.json());
 
 // Routes
@@ -28,5 +30,5 @@ app.use('/notes/delete', deleteNote);
 
 
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+  console.log(`Backend listening  at http://localhost:${port}`);
 });

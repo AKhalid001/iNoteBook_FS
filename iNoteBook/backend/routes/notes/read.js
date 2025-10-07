@@ -10,7 +10,7 @@ read.get('/', fetchuser, async (req, res) => {
         res.json(notes);
     }
     catch (err) {
-        console.log(err);
+        
         res.json({ message: err.message });
     };
 });

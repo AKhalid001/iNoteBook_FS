@@ -36,7 +36,7 @@ signUpRouter.post('/',
             res.json({ jwtToken });
         }
         catch (err) {
-            console.log(err);
+            
             res.json({ message: err.message });
         };
     }

@@ -1,14 +1,17 @@
 import React from "react";
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Navbar } from "./Components/Navbar";
-import { Home } from "./Components/Home";
-import { About } from "./Components/About";
-import { Signin } from "./Components/Signin";
-import { Signup } from "./Components/Signup";
+
 // import { Infobar } from "./Components/Infobar";
+import { Navbar } from "./Components/Structure/Navbar";
+import { Home } from "./Components/Pages/Home";
+import { About } from "./Components/Pages/About";
+import { Signin } from "./Components/Pages/Signin";
+import { Signup } from "./Components/Pages/Signup";
 import { NoteState } from "./Context/NoteState";
-import NewNote from "./Components/NewNote";
+import NewNote from "./Components/Note/NewNote";
+import MyNotes from "./Components/Note/MyNotes";
+import UpdateNote from "./Components/Note/UpdateNote";
 // import Bg from './../public/bg.jpg';
 
 
@@ -25,6 +28,9 @@ function App() {
               <Route exact path="/signin" element={<Signin />} />
               <Route exact path="/signup" element={<Signup />} />
               <Route exact path="/newNote" element={<NewNote />} />
+              <Route exact path="/myNote" element={<MyNotes />} />
+              <Route exact path="/myNote/updateNote" element={<UpdateNote />} />
+
             </Routes>
             </div>
             {/* <Infobar /> */}
