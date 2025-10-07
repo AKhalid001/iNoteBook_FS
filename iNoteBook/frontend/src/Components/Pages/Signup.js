@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { NoteContext } from "../../Context/NoteContext";
 
 export const Signup = () => {
+  const { signupRequest } = useContext(NoteContext);
   const [formData, setFormData] = useState({
-    fName: "",
-    lName: "",
+    username: "",
     email: "",
-    pass: "",
+    password: "",
   });
 
   // Generic handler
@@ -13,10 +14,12 @@ export const Signup = () => {
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
+  const handleOnClick = () => {
+    signupRequest(formData.username, formData.email, formData.password)
+  }
+
   const submit = (e) => {
     e.preventDefault();
-    // Add form submission logic here
-    console.log(formData);
   };
 
   return (
@@ -26,62 +29,47 @@ export const Signup = () => {
     >
       <div
         className="card shadow-sm p-5 rounded-4"
-        style={{ maxWidth: "600px", width: "100%" }}
+        style={{ maxWidth: "500px", width: "100%" }}
       >
         <h2 className="text-center mb-4 fw-bold" style={{ color: "#333" }}>
           Create Account
         </h2>
 
-        <form className="row g-3" onSubmit={submit}>
-          {/* Name Fields */}
-          <div className="col-md-6">
+        <form onSubmit={submit} className="row g-3">
+          {/* Username */}
+          <div className="col-12">
             <input
               type="text"
-              id="fName"
+              id="username"
               className="form-control form-control-lg"
-              placeholder="First Name"
-              value={formData.fName}
-              onChange={handleOnChange}
-              required
-            />
-          </div>
-          <div className="col-md-6">
-            <input
-              type="text"
-              id="lName"
-              className="form-control form-control-lg"
-              placeholder="Last Name"
-              value={formData.lName}
+              placeholder="Username"
+              value={formData.username}
               onChange={handleOnChange}
               required
             />
           </div>
 
-          {/* Email & Password */}
-          <div className="col-md-6">
-            <label htmlFor="email" className="form-label fw-semibold">
-              Email
-            </label>
+          {/* Email */}
+          <div className="col-12">
             <input
               type="email"
               id="email"
               className="form-control form-control-lg"
-              placeholder="Enter your email"
+              placeholder="Email"
               value={formData.email}
               onChange={handleOnChange}
               required
             />
           </div>
-          <div className="col-md-6">
-            <label htmlFor="pass" className="form-label fw-semibold">
-              Password
-            </label>
+
+          {/* Password */}
+          <div className="col-12">
             <input
               type="password"
-              id="pass"
+              id="password"
               className="form-control form-control-lg"
-              placeholder="Enter your password"
-              value={formData.pass}
+              placeholder="Password"
+              value={formData.password}
               onChange={handleOnChange}
               required
             />
@@ -93,10 +81,10 @@ export const Signup = () => {
               <input
                 className="form-check-input"
                 type="checkbox"
-                id="gridCheck"
+                id="termsCheck"
                 required
               />
-              <label className="form-check-label" htmlFor="gridCheck">
+              <label className="form-check-label" htmlFor="termsCheck">
                 I agree to the terms and conditions
               </label>
             </div>
@@ -107,6 +95,7 @@ export const Signup = () => {
             <button
               type="submit"
               className="btn btn-primary w-100 py-2 fw-semibold"
+              onClick={handleOnClick}
               style={{ fontSize: "1rem", borderRadius: "8px" }}
             >
               Sign Up

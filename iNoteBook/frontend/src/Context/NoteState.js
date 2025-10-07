@@ -10,6 +10,7 @@ export const NoteState = ({ children }) => {
   });
 
   const [myNotes, setMyNotes] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   // READ: Get all notes
   const readNote = async () => {
@@ -71,9 +72,44 @@ export const NoteState = ({ children }) => {
     }
   };
 
+  // Login: Remove note
+  const signinRequest = async (email, password) => {
+    debugger
+    try {
+      const response = await fetch(`${hostname}/signin`, {
+        method: "POST",
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+      setLoggedIn(data.loggedIn);
+      return data.loggedIn
+    } catch (error) {
+      console.error("Error creating note:", error);
+    }
+  };
+
+  const signupRequest = async (name, email, password) => {
+    debugger
+    try {
+      const response = await fetch(`${hostname}/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password }),
+      });
+      const data = await response.json();
+      setLoggedIn(data.loggedIn);
+      return data.loggedIn
+    } catch (error) {
+      console.error("Error creating note:", error);
+    }
+  };
+
   return (
     <NoteContext.Provider
-      value={{ myNotes, createNote, readNote, updateNote, deleteNote }}
+      value={{ myNotes, loggedIn, setLoggedIn, createNote, readNote, updateNote, deleteNote, signinRequest, signupRequest }}
     >
       {children}
     </NoteContext.Provider>

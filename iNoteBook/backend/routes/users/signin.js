@@ -14,25 +14,27 @@ signInRouter.post('/',
     ],
     async (req, res) => {
         const errors = validationResult(req);
+        let loggedIn = false;
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
         try {
             let user = await User.findOne({ email: req.body.email });
             if (!user) {
-                return res.status(400).json({ error: 'Email dose not exists, please Sign Up' });
-            }else{
+                return res.status(400).json({ loggedIn, error: 'Email dose not exists, please Sign Up' });
+            } else {
                 const passwordCompare = await bcryptjs.compare(req.body.password, user.password);
-                if(!passwordCompare){
-                    return res.status(400).json({ error: 'Incorrect Credentials ' });
-                }else{
-                    const jwtToken  = jwt.sign({ id: user.id }, jwtSecret);
-                    res.json({ jwtToken });
+                if (!passwordCompare) {
+                    return res.status(400).json({ loggedIn, error: 'Incorrect Credentials ' });
+                } else {
+                    const jwtToken = jwt.sign({ id: user.id }, jwtSecret);
+                    loggedIn = true;
+                    res.json({ loggedIn, jwtToken });
                 }
             }
         }
         catch (err) {
-            
+
             res.json({ message: err.message });
         };
     }

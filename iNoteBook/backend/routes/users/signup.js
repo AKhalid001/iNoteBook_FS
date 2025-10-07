@@ -10,11 +10,12 @@ const jwtSecret = "@mysecrettoken";
 
 signUpRouter.post('/',
     [
-        body('name', 'Enter a valid name').isLength({ min: 3 }),
+        body('name', 'Enter a valid name'),
         body('email', 'Enter a valid email').isEmail(),
         body('password', 'Password must be at least 5 characters').isLength({ min: 5 }),
     ],
     async (req, res) => {
+        debugger
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -41,5 +42,3 @@ signUpRouter.post('/',
         };
     }
 );
-
-

@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom"
 import { useLocation } from "react-router-dom"
+import { NoteContext } from "../../Context/NoteContext";
 
 export const Navbar = () => {
   const location = useLocation();
-  const [loggedIn, setLoggedIn] = useState(false);
+  const { loggedIn } = useContext(NoteContext);
   const navigate = {
     "iNoteBook": "/",
     "Home": "/",

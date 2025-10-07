@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { NoteContext } from "../../Context/NoteContext";
 import { useLocation, useNavigate } from "react-router-dom";
+import "../../App.css"; // Ensure this CSS file contains the classes below
 
 const NoteForm = ({ behaviour }) => {
   const isNewForm = behaviour === "create";
@@ -47,16 +48,8 @@ const NoteForm = ({ behaviour }) => {
   };
 
   return (
-    <div
-      className="min-vh-100 d-flex justify-content-center align-items-center p-4"
-      style={{
-        background: "linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)",
-      }}
-    >
-      <div
-        className="card shadow-lg border-0 rounded-4 w-100"
-        style={{ maxWidth: "850px", minHeight: "85vh" }}
-      >
+    <div className="noteform-container">
+      <div className="card noteform-card">
         <div className="card-body d-flex flex-column h-100 p-5">
           {/* Header */}
           <div className="text-center mb-4">
@@ -85,11 +78,8 @@ const NoteForm = ({ behaviour }) => {
                 placeholder="Enter note title"
                 value={noteData.title}
                 onChange={handleChange}
-                style={{ transition: "all 0.2s" }}
               />
-              {noteData.error && (
-                <div className="invalid-feedback">{noteData.error}</div>
-              )}
+              {noteData.error && <div className="invalid-feedback">{noteData.error}</div>}
             </div>
 
             <div className="col-md-4">
@@ -114,12 +104,11 @@ const NoteForm = ({ behaviour }) => {
             </label>
             <textarea
               id="description"
-              className="form-control rounded-3"
+              className="form-control noteform-textarea"
               rows={8}
               placeholder="Write your note details here..."
               value={noteData.description}
               onChange={handleChange}
-              style={{ resize: "none", fontSize: "15px" }}
             />
           </div>
 
@@ -127,30 +116,19 @@ const NoteForm = ({ behaviour }) => {
           <div className="d-flex justify-content-end gap-3 mt-auto">
             <button
               type="button"
-              className="btn btn-outline-secondary px-4 py-2 rounded-3"
+              className="btn btn-outline-secondary noteform-btn"
               onClick={handleReset}
               disabled={loading}
-              style={{ fontWeight: 500 }}
             >
               Reset
             </button>
             <button
               type="button"
-              className="btn btn-primary px-4 py-2 rounded-3 shadow-sm"
+              className="btn btn-primary noteform-btn-primary"
               onClick={handleSubmit}
               disabled={loading}
-              style={{
-                fontWeight: 500,
-                background:
-                  "linear-gradient(90deg, #0d6efd 0%, #0a58ca 100%)",
-                border: "none",
-              }}
             >
-              {loading
-                ? "Processing..."
-                : isNewForm
-                ? "Save Note"
-                : "Update Note"}
+              {loading ? "Processing..." : isNewForm ? "Create Note" : "Update Note"}
             </button>
           </div>
         </div>

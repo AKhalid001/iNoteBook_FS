@@ -1,0 +1,126 @@
+/* Container */
+.mynotes-container {
+  min-height: 90vh;
+  background-color: #f8f9fa;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+/* Header */
+.mynotes-header {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 3rem;
+}
+
+/* Card */
+.note-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.note-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Header */
+.note-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  border-bottom: 1px solid #dee2e6;
+  padding: 0.75rem 1rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.note-title {
+  font-weight: 700;
+  color: #495057;
+}
+
+.note-actions i {
+  margin-left: 0.75rem;
+  cursor: pointer;
+}
+
+/* Badge */
+.note-badge {
+  display: inline-block;
+  background-color: #ffd966;
+  color: #333;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Floating Add Button */
+.add-note-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  font-size: 28px;
+  background-color: #0d6efd;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.add-note-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Container */
+.noteform-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+/* Card */
+.noteform-card {
+  max-width: 850px;
+  min-height: 85vh;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.15);
+  border: 0;
+}
+
+/* Textarea */
+.noteform-textarea {
+  resize: none;
+  font-size: 15px;
+}
+
+/* Buttons */
+.noteform-btn {
+  font-weight: 500;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.noteform-btn-primary {
+  font-weight: 500;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(90deg, #0d6efd 0%, #0a58ca 100%);
+  border: none;
+  box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1);
+}

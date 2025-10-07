@@ -1,6 +1,34 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { NoteContext } from "../../Context/NoteContext";
+import { useNavigate } from "react-router-dom";
 
 export const Signin = () => {
+  const { signinRequest, loggedIn } = useContext(NoteContext);
+  const navigateTo = useNavigate();
+  const [credentials, setCredentials] = useState({ email: "", password: "" });
+
+  // useEffect(() => {
+  //   handleRedirection(loggedIn);
+  // }, []);
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setCredentials((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handleOnClick = async (e) => {
+    e.preventDefault();
+    const result = await signinRequest(credentials.email, credentials.password);
+    debugger
+    handleRedirection(result); // pass data if needed
+  }
+
+  const handleRedirection = (loggedIn) => {
+    navigateTo(loggedIn ? "/myNote" : "/signup");
+  }
+
+
+
   return (
     <div
       className="d-flex align-items-center justify-content-center vh-100"
@@ -23,8 +51,10 @@ export const Signin = () => {
             <input
               type="email"
               className="form-control form-control-lg"
-              id="inputEmail"
+              id="email"
               placeholder="Enter your email"
+              value={credentials.email}
+              onChange={handleChange}
             />
           </div>
 
@@ -36,8 +66,10 @@ export const Signin = () => {
             <input
               type="password"
               className="form-control form-control-lg"
-              id="inputPassword"
+              id="password"
               placeholder="Enter your password"
+              value={credentials.password}
+              onChange={handleChange}
             />
           </div>
 
@@ -57,6 +89,7 @@ export const Signin = () => {
           <button
             type="submit"
             className="btn btn-primary w-100 py-2 fw-semibold"
+            onClick={handleOnClick}
             style={{
               fontSize: "1rem",
               borderRadius: "8px",
